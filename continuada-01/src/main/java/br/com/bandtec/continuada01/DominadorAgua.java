@@ -1,11 +1,11 @@
 package br.com.bandtec.continuada01;
 
-public class DominadorAgua extends Dominador {
+public class DominadorAgua extends DominadorController {
     public DominadorAgua(String nome, String habilidade, Integer vida) {
         super(nome, habilidade, vida);
     }
 
-    public Double aplicarPoder(Dominador oponente) {
+    public Double aplicarPoder(DominadorController oponente) {
         Double qtdDano = 0.0;
         if (oponente instanceof DominadorTerra){
             qtdDano = 20.0;

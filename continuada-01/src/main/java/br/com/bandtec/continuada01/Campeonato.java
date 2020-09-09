@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/dominadores")
 public class Campeonato{
 
-private List<Dominador> listaDominadores = new ArrayList<Dominador>();
+private List<DominadorController> listaDominadores = new ArrayList<DominadorController>();
 
     @PostMapping("/criar/dominadorFogo")
     public ResponseEntity criarDominadorFogo(@RequestBody DominadorFogo novoDominadorFogo) {
