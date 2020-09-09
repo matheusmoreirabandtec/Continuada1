@@ -1,37 +1,63 @@
 package br.com.bandtec.continuada01;
 
-public abstract class DominadorController {
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-    private String nome;
-    private String habilidade;
-    private Integer vida;
+import java.util.ArrayList;
+import java.util.List;
 
-    public DominadorController(String nome, String habilidade, Integer vida) {
-        this.nome = nome;
-        this.habilidade = habilidade;
-        this.vida = vida;
+@RestController
+@RequestMapping("/dominadores")
+public class Campeonato{
+
+private List<DominadorController> listaDominadores = new ArrayList<DominadorController>();
+
+    @PostMapping("/criar/dominadorFogo")
+    public ResponseEntity criarDominadorFogo(@RequestBody DominadorFogo novoDominadorFogo) {
+
+        listaDominadores.add(novoDominadorFogo);
+        return ResponseEntity.status(201).build();
     }
 
-    public abstract Double aplicarPoder(DominadorController oponente);
+    @PostMapping("/criar/dominadorAgua")
+    public ResponseEntity criarDominadorAgua(@RequestBody DominadorAgua novoDominadorAgua) {
 
-    public String getNome() {
-        return nome;
+        listaDominadores.add(novoDominadorAgua);
+        return ResponseEntity.status(201).build();
     }
 
-    public String getHabilidade() {
-        return habilidade;
+    @PostMapping("/criar/dominadorTerra")
+    public ResponseEntity criarDominadorTerra(@RequestBody DominadorTerra novoDominadorTerra) {
+
+        listaDominadores.add(novoDominadorTerra);
+        return ResponseEntity.status(201).build();
     }
 
-    public Integer getVida() {
-        return vida;
+    @PostMapping("/criar/dominadorAr")
+    public ResponseEntity criarDominadorAr(@RequestBody DominadorAr novoDominadorAr) {
+
+        listaDominadores.add(novoDominadorAr);
+        return ResponseEntity.status(201).build();
     }
 
-    @Override
-    public String toString() {
-        return "Dominadores{" +
-                "nome='" + nome + '\'' +
-                ", habilidade='" + habilidade + '\'' +
-                ", vida=" + vida +
-                '}';
+    @GetMapping
+    public ResponseEntity listarDominadores(){
+        return ResponseEntity.status(200).body(listaDominadores);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity matarDominador(@PathVariable int id) {
+        if(listaDominadores.size() >= id){
+            listaDominadores.remove(id-1);
+            return ResponseEntity.status(202).build();
+        }else{
+            return ResponseEntity.status(204).build();
+        }
+    }
+
 }
+
+//Listar Lutadores fogo, agua, terra e ar
+//Listar todos lutadores
+//Lutar recebe dois lutadores
+//Apagar lutador
