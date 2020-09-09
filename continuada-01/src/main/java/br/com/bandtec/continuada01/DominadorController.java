@@ -8,9 +8,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dominadores")
-public class Campeonato{
+public class DominadorController {
 
-private List<DominadorController> listaDominadores = new ArrayList<DominadorController>();
+private List<Dominador> listaDominadores = new ArrayList<Dominador>();
 
     @PostMapping("/criar/dominadorFogo")
     public ResponseEntity criarDominadorFogo(@RequestBody DominadorFogo novoDominadorFogo) {
